@@ -17,6 +17,13 @@ class Poll(models.Model):
         verbose_name='Описание опроса'
     )
 
+    def __str__(self):
+        return f'{self.name} : {self.description}'
+
+    class Meta:
+        verbose_name = 'Опрос'
+        verbose_name_plural = 'Опросы'
+
 
 class Question(models.Model):
     type_question = (
@@ -30,6 +37,7 @@ class Question(models.Model):
         verbose_name='Вопрос',
     )
     type = models.CharField(
+        max_length=64,
         verbose_name='Тип вопроса',
         choices=type_question,
         default='text'
@@ -39,6 +47,13 @@ class Question(models.Model):
         on_delete=models.CASCADE,
         related_name='questions'
     )
+
+    def __str__(self):
+        return self.question_text
+
+    class Meta:
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Вопросы'
 
 
 class Choice(models.Model):
@@ -51,9 +66,16 @@ class Choice(models.Model):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self):
+        return self.choice_text
+
+    class Meta:
+        verbose_name = 'Ответ'
+        verbose_name_plural = 'Ответы'
+
 
 class Answer(models.Model):
     user = models.IntegerField(verbose_name='id пользователя', null=True)
-    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, verbose_name='Опрос')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Вопрос')
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE, verbose_name='Выбор ответа')
