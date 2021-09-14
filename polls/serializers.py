@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from .customfields import IdFieldInstance
 from .models import Poll, Question, Choice, Answer, Vote
 
 
@@ -55,10 +56,17 @@ class PollSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(read_only=True)
+    choice = ChoiceSerializer(read_only=True)
+    question_id = IdFieldInstance(
+        queryset=Question.objects.all(), write_only=True
+    )
+    choice_id = IdFieldInstance(
+        queryset=Choice.objects.all(), write_only=True
+    )
 
     class Meta:
         model = Answer
-        fields = ('question', 'choice')
+        fields = ('question', 'question_id', 'choice', 'choice_id')
         read_only_fields = ('id',)
 
 
