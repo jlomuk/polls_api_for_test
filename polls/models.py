@@ -28,8 +28,8 @@ class Poll(models.Model):
 class Question(models.Model):
     type_question = (
         ('text', 'Текст'),
-        ('one_choiсe', 'Один ответ'),
-        ('multi_choices', 'Несколько ответов'),
+        ('one', 'Один ответ'),
+        ('multi', 'Несколько ответов'),
     )
 
     question_text = models.CharField(
@@ -59,11 +59,13 @@ class Question(models.Model):
 class Choice(models.Model):
     choice_text = models.CharField(
         max_length=255,
-        verbose_name='Текст ответа'
+        verbose_name='Текст ответа',
+        default='Ответ в свободной форме'
     )
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,
+        verbose_name='Опрос',
         related_name="choices"
     )
 
@@ -71,12 +73,30 @@ class Choice(models.Model):
         return self.choice_text
 
     class Meta:
-        verbose_name = 'Ответ'
-        verbose_name_plural = 'Ответы'
+        verbose_name = 'Вариант'
+        verbose_name_plural = 'Варианты'
+
+
+class Vote(models.Model):
+    user = models.IntegerField(verbose_name='id пользователя', null=True)
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, verbose_name='Опрос')
+
+    def __str__(self):
+        return f'{self.user} - {self.poll.name}'
+
+    class Meta:
+        verbose_name = 'Пройденный опрос'
+        verbose_name_plural = 'Пройденные опросы'
 
 
 class Answer(models.Model):
-    user = models.IntegerField(verbose_name='id пользователя', null=True)
-    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, verbose_name='Опрос')
+    vote = models.ForeignKey(Vote, on_delete=models.CASCADE, verbose_name='Опрос пользователя', related_name='answers')
     question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Вопрос')
-    choice = models.ForeignKey(Choice, on_delete=models.CASCADE, verbose_name='Выбор ответа')
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE, verbose_name='Вариант ответа')
+
+    def __str__(self):
+        return f'{self.question.question_text}: {self.choice.choice_text}'
+
+    class Meta:
+        verbose_name = 'Ответ'
+        verbose_name_plural = 'Ответы'
