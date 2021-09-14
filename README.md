@@ -18,7 +18,7 @@ touch .env
 **Example env file:**
 ```sh
 SECRET_KEY=1dsfdfhe6w!tetfg43325thuth2l(x@54565)))mt6pykq1diq%i0-=5(y-to9yos8m&0svzfv
-DEBUG=0
+DEBUG=1
 ALLOWED_HOSTS=['*']
 POSTGRES_DB=polls
 POSTGRES_USER=admin
