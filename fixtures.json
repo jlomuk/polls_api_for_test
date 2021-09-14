@@ -1,0 +1,99 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$5hrDZAHxqIPcsb6BX78Z1K$vzOHmOCNgQ7Lb+YxYKKqP52HFbwqlOFECSq2IocEWa0=",
+        "last_login": "2021-09-14T11:41:23.523Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-14T04:29:59.991Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "polls.poll",
+    "pk": 1,
+    "fields": {
+        "name": "Праздники",
+        "created_date": "2021-09-14T11:42:14.857Z",
+        "end_date": "2021-10-20T09:30:00Z",
+        "description": "Опрос по любимым праздникам"
+    }
+},
+{
+    "model": "polls.poll",
+    "pk": 4,
+    "fields": {
+        "name": "Любимые фильмы и актеры",
+        "created_date": "2021-09-14T11:43:07.803Z",
+        "end_date": "2021-09-14T12:42:38Z",
+        "description": "Вопросы связанные  с киноиндустрией"
+    }
+},
+{
+    "model": "polls.question",
+    "pk": 6,
+    "fields": {
+        "question_text": "Любите ли Вы Новый год?",
+        "type": "one",
+        "poll": 1
+    }
+},
+{
+    "model": "polls.question",
+    "pk": 8,
+    "fields": {
+        "question_text": "Любимый Актер?",
+        "type": "text",
+        "poll": 4
+    }
+},
+{
+    "model": "polls.choice",
+    "pk": 8,
+    "fields": {
+        "choice_text": "ДА",
+        "question": 6
+    }
+},
+{
+    "model": "polls.choice",
+    "pk": 9,
+    "fields": {
+        "choice_text": "НЕТ",
+        "question": 6
+    }
+},
+{
+    "model": "polls.choice",
+    "pk": 10,
+    "fields": {
+        "choice_text": "Не уверен",
+        "question": 6
+    }
+},
+{
+    "model": "polls.vote",
+    "pk": 5,
+    "fields": {
+        "user": 1234,
+        "poll": 1
+    }
+},
+{
+    "model": "polls.answer",
+    "pk": 7,
+    "fields": {
+        "vote": 5,
+        "question": 6,
+        "choice": 8
+    }
+}
+]

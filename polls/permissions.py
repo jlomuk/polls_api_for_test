@@ -8,8 +8,9 @@ class PollPermission(BasePermission):
         if request.user.is_superuser:
             return True
         view.queryset = view.queryset.filter(
-            end_date__gte=datetime.date.today()
+            end_date__gte=datetime.datetime.now()
         )
+        print(datetime.datetime.now())
         if request.method == 'GET':
             return True
         return False
