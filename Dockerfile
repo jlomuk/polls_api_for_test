@@ -1,4 +1,4 @@
-FROM python:3.9-alpine
+FROM python:3.9
 
 WORKDIR /home/web/
 
@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "sh", "./entrypoint.sh" ]
+ENTRYPOINT [ "./entrypoint.sh" ]

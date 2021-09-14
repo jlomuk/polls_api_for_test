@@ -4,12 +4,12 @@
 
 - clone repo
 ```sh
-git clone https://github.com/jlomuk/test_api.git
+git clone https://github.com/jlomuk/polls_api_for_test.git
 ```
-- move in directory "test_api"
+- move in directory "polls_api_for_test"
 
 ```sh
-cd test_api
+cd polls_api_for_test
 ```
 - create .env and  enter enviroment values
 ```sh
