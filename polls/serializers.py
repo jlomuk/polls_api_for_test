@@ -49,7 +49,7 @@ class PollSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Poll
-        fields = ('id', 'name', 'created_data', 'end_data', 'description', 'questions')
+        fields = ('id', 'name', 'created_date', 'end_date', 'description', 'questions')
         read_only_fields = ('id',)
 
 

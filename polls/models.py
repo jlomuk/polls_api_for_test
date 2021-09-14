@@ -6,11 +6,11 @@ class Poll(models.Model):
         max_length=255,
         verbose_name='Название опроса',
     )
-    created_data = models.DateTimeField(
+    created_date = models.DateTimeField(
         verbose_name='Дата создания',
         auto_now=True,
     )
-    end_data = models.DateTimeField(
+    end_date = models.DateTimeField(
         verbose_name='Дата окончания'
     )
     description = models.TextField(
