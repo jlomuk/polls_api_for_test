@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Poll, Question, Choice
-from .serializers import PollSerializer, QuestionSerializer, ChoiceSerializer
+from .models import Poll, Question
+from .serializers import PollSerializer, QuestionSerializer
 
 
 class PollViewSet(viewsets.ModelViewSet):
@@ -12,8 +12,3 @@ class PollViewSet(viewsets.ModelViewSet):
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-
-
-class ChoiceViewSet(viewsets.ModelViewSet):
-    queryset = Choice.objects.all()
-    serializer_class = ChoiceSerializer
